@@ -8,8 +8,10 @@ Sistema de autenticación web con verificación de **dos pasos (2FA)** utilizand
 
 ### ✨ Características Principales
 -----
-* ✅ **Registro de usuarios** con generación de Código QR (TOTP)
+✅ **Registro de usuarios** con generación de Código QR (TOTP)
+
 ✅ **Autenticación de 2 Factores** (2FA) obligatoria usando Speakeasy y la app Google Authenticator.
+
 ✅ **Inicio de sesión seguro** con contraseña y validación de token 2FA.
 ✅ **Base de datos PostgreSQL** alojada en AWS RDS.
 ✅ **Interfaz moderna** utilizando CSS personalizado y Font Awesome.
