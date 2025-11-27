@@ -3,26 +3,29 @@
 
 <head>
     <title>Configurar 2FA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
-    <h1>Configuración de Autenticación de 2 Factores (2FA)</h1>
-    <p>Escanea el siguiente Código QR con tu aplicación de autenticación (Google Authenticator, Authy, etc.).</p>
+    <div class="container">
+        <h1><i class="fas fa-shield-alt"></i> Configuración de 2FA</h1>
+        <p>Escanea el QR con tu app de autenticación o usa el secreto manual:</p>
+        
+        <h2>Usuario: <%= username %></h2>
+        <div class="qr-code">
+            <img src="<%= qrCodeData %>" alt="QR Code">
+        </div>
+        
+        <p class="secret-manual">Secreto Manual: <strong><%= secret %></strong></p>
 
-    <h2>Usuario: <%= username %>
-    </h2>
-    <img src="<%= qrCodeData %>" alt="QR Code"><br>
-
-    <p>Secreto Manual (si no puedes escanear): <strong>
-            <%= secret %>
-        </strong></p>
-
-    <p>Ingresa el código generado para verificar y habilitar 2FA:</p>
-    <form method="POST" action="/enable-2fa">
-        <label for="token">Código 6 dígitos:</label>
-        <input type="text" id="token" name="token" required><br><br>
-        <button type="submit">Verificar y Habilitar 2FA</button>
-    </form>
+        <p>Ingresa el código para verificar y habilitar 2FA:</p>
+        <form method="POST" action="/enable-2fa">
+            <label for="token"><i class="fas fa-key"></i> Código 6 dígitos:</label>
+            <input type="text" id="token" name="token" required>
+            <button type="submit"><i class="fas fa-check-circle"></i> Verificar y Habilitar</button>
+        </form>
+    </div>
 </body>
 
 </html>

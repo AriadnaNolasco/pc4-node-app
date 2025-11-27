@@ -48,7 +48,7 @@ const is2FAVerified = (req, res, next) => {
 
 app.get('/', (req, res) => {
     if (req.session.twofaVerified) {
-        res.send(`<h1>Bienvenido, usuario ${req.session.username}!</h1><p>Has iniciado sesión con éxito y has verificado 2FA.</p><a href="/logout">Cerrar sesión</a>`);
+        res.send('home.html', { username: req.session.username });
     } else {
         res.redirect('/login');
     }
