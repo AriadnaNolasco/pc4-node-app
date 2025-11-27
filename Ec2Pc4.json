@@ -1,0 +1,87 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Stack para PC 4: Instancia Ubuntu 20 con puerto 3000 abierto.",
+  "Parameters": {
+    "KeyName": {
+      "Description": "Nombre del Par de Claves EC2 existente para acceso SSH.",
+      "Type": "AWS::EC2::KeyPair::KeyName",
+      "Default": "pc4-key",
+      "ConstraintDescription": "Debe ser el nombre de una clave SSH existente en tu cuenta."
+    }
+  },
+  "Mappings": {
+    "RegionMap": {
+      "us-east-2": {
+        "AMI": "ami-00ca19b9fb851ec1b"
+      }
+    }
+  },
+  "Resources": {
+    "InstanceSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Habilitar SSH (22) y el puerto de la app (3000)",
+        "SecurityGroupIngress": [
+          {
+            "IpProtocol": "tcp",
+            "FromPort": "22",
+            "ToPort": "22",
+            "CidrIp": "0.0.0.0/0"
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": "3000",
+            "ToPort": "3000",
+            "CidrIp": "0.0.0.0/0"
+          }
+        ]
+      }
+    },
+    "EC2Instance": {
+      "Type": "AWS::EC2::Instance",
+      "Properties": {
+        "InstanceType": "t2.micro",
+        "KeyName": {
+          "Ref": "KeyName"
+        },
+        "ImageId": {
+          "Fn::FindInMap": [
+            "RegionMap",
+            {
+              "Ref": "AWS::Region"
+            },
+            "AMI"
+          ]
+        },
+        "SecurityGroupIds": [
+          {
+            "Ref": "InstanceSecurityGroup"
+          }
+        ],
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Sub": "${AWS::StackName}-Ubuntu20"
+            }
+          },
+          {
+            "Key": "Description",
+            "Value": "Lab 4 - Instancia Ubuntu 20 (Corregido a t2.micro)"
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "PublicIP": {
+      "Description": "Dirección IP pública de la instancia EC2",
+      "Value": {
+        "Fn::GetAtt": [
+          "EC2Instance",
+          "PublicIp"
+        ]
+      }
+    }
+  }
+}
