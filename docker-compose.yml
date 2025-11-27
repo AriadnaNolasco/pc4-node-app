@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  web:
+    # Nombre del contenedor (opcional)
+    container_name: pc4-app-node
+    # Construye la imagen usando el Dockerfile en el directorio actual
+    build: .
+    # Mapea el puerto 3000 del host EC2 al 3000 del contenedor
+    ports:
+      - "3000:3000"
+    # Reinicia si el contenedor se cae
+    restart: always
+    # Variables de entorno para la conexión a RDS y seguridad
+    environment:
+      - .env
