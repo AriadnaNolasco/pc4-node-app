@@ -7,14 +7,14 @@
 Sistema de autenticación web con verificación de **dos pasos (2FA)** utilizando Google Authenticator (TOTP). La aplicación está desarrollada con el framework **Express.js** en **Node.js**, utiliza **PostgreSQL** en **AWS RDS** y está completamente containerizada con **Docker**.
 
 ### ✨ Características Principales
-
-✅ **Registro de usuarios** con generación de Código QR (TOTP)
+-----
+* ✅ **Registro de usuarios** con generación de Código QR (TOTP)
 ✅ **Autenticación de 2 Factores** (2FA) obligatoria usando Speakeasy y la app Google Authenticator.
 ✅ **Inicio de sesión seguro** con contraseña y validación de token 2FA.
 ✅ **Base de datos PostgreSQL** alojada en AWS RDS.
 ✅ **Interfaz moderna** utilizando CSS personalizado y Font Awesome.
 ✅ **Containerización** con Docker y orquestación con Docker Compose.
-✅ **Infraestructura como Código (IaC)** desplegada en AWS con CloudFormation.
+✅ **Infraestructura como Código (IaC)** desplegada en AWS con CloudFormation. Nombre de la plantilla: Ec2Pc4
 
 -----
 
